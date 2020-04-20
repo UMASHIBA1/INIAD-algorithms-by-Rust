@@ -13,3 +13,4 @@ trait ListMethod {
     fn list_get(&self, usize) -> &Self::ELEMENT;
     fn list_index(&self, &Self::ELEMENT) -> usize;
 }
+
