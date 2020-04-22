@@ -1,1 +1,1 @@
-mod methods;
+pub mod methods;
