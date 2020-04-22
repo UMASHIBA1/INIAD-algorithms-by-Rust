@@ -1,7 +1,5 @@
 pub trait ListMethods {
-    type LIST;
     type ELEMENT;
-    fn construct(&self) -> &Self::LIST;
     fn list_free(&self) -> ();
     fn list_print(&self) -> ();
     fn list_insert(&self, pos: usize, value: &Self::ELEMENT) -> ();
