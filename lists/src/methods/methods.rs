@@ -1,6 +1,5 @@
 pub trait ListMethods {
     type ELEMENT;
-    fn list_free(&self) -> ();
     fn list_print(&self) -> ();
     fn list_insert(&self, pos: usize, value: &Self::ELEMENT) -> ();
     fn list_delete(&self, pos: usize) -> ();
