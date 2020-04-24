@@ -1,3 +1,5 @@
+use crate::methods::methods::ListMethods;
+
 const INITIAL_SIZE: usize = 10;
 
 pub struct ArrayList {
@@ -7,3 +9,11 @@ pub struct ArrayList {
 }
 
 
+impl ListMethods for ArrayList {
+    type ELEMENT = i64;
+    fn list_print(&self) {
+        for i in 0..*(&self.length) {
+            println!("{}", &self.elements[i]);
+        }
+    }
+}
