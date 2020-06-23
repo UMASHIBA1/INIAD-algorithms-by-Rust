@@ -1,2 +1,2 @@
-# INIAD-algorithms-by-Rust
+# INIAD-algorithms-implementation
 学校の授業ではCでやったアルゴリズムを自分で実装してみます
