@@ -3,7 +3,7 @@ use crate::methods::methods::ListMethods;
 const INITIAL_SIZE: usize = 10;
 
 pub struct ArrayList {
-    elements: Box<[i64; INITIAL_SIZE]>,
+    elements: Vec<i64>,
     length: usize,
     max_length: usize,
 }
@@ -12,11 +12,17 @@ impl ListMethods for ArrayList {
     type ELEMENT = i64;
 
     fn new() -> Self {
-        ArrayList {
-            elements: Box::new([0; INITIAL_SIZE]),
+        let mut new_list = ArrayList {
+            elements: Vec::with_capacity(INITIAL_SIZE),
             length: 0,
             max_length: INITIAL_SIZE,
+        };
+
+        for _ in 0..INITIAL_SIZE {
+            // elementsの初期値はとりあえず全部0
+            new_list.elements.push(0);
         }
+        new_list
     }
 
     fn list_print(&self) {
@@ -31,10 +37,17 @@ impl ListMethods for ArrayList {
             ()
         }
         // if self.length == self.max_length {
-
+        //     let next_max_length = self.max_length * 2;
+        //     let mut new_elements = Vec::with_capacity(next_max_length);
+        //     for i in 0..self.length {
+        //         new_elements[i] = self.elements[i];
+        //     }
+        //     self.elements = new_elements;
+        //     self.max_length = next_max_length;
         // }
 
         for i in (pos..*(&self.length)).rev() {
+            println!("iter");
             let element_box = &mut self.elements;
             element_box[i] = element_box[i - 1];
         }
