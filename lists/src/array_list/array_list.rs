@@ -34,7 +34,7 @@ impl ListMethods for ArrayList {
 
         // }
 
-        for i in ((pos - 1)..self.length).rev() {
+        for i in (pos..*(&self.length)).rev() {
             let element_box = &mut self.elements;
             element_box[i] = element_box[i - 1];
         }

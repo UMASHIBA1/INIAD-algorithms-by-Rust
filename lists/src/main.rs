@@ -7,6 +7,8 @@ fn main() {
     let mut list1 = ArrayList::new();
 
     list1.list_insert(0, 5);
+    list1.list_insert(1, 6);
+    list1.list_insert(2, 7);
 
     list1.list_print();
 
