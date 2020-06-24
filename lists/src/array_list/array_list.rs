@@ -26,30 +26,34 @@ impl ListMethods for ArrayList {
     }
 
     fn list_print(&self) {
-        println!("run print!");
         for i in 0..self.length {
             println!("{}", &self.elements[i]);
         }
     }
 
     fn list_insert(&mut self, pos: usize, value: Self::ELEMENT) {
-        if pos < 0 || pos > *(&self.length) {
+        // 指定されたposの位置が存在していない場合
+        if pos < 0 || pos > self.length {
             ()
         }
-        // if self.length == self.max_length {
-        //     let next_max_length = self.max_length * 2;
-        //     let mut new_elements = Vec::with_capacity(next_max_length);
-        //     for i in 0..self.length {
-        //         new_elements[i] = self.elements[i];
-        //     }
-        //     self.elements = new_elements;
-        //     self.max_length = next_max_length;
-        // }
+        // すでにelmentsが最大長になっている場合、新しくヒープ上に配列を作って内容をコピーする
+        if self.length == self.max_length {
+            let next_max_length = self.max_length * 2;
+            let mut new_elements = Vec::with_capacity(next_max_length);
+            for i in 0..self.length {
+                new_elements.push(self.elements[i]);
+            }
+            for i in self.length..next_max_length {
+                new_elements.push(0);
+            }
+            self.elements = new_elements;
+            self.max_length = next_max_length;
+        }
 
-        for i in (pos..*(&self.length)).rev() {
-            println!("iter");
+        // 指定されたposより後ろの要素をずらす
+        for i in (pos..self.length).rev() {
             let element_box = &mut self.elements;
-            element_box[i] = element_box[i - 1];
+            element_box[i + 1] = element_box[i];
         }
         self.elements[pos] = value;
         self.length = self.length + 1;
