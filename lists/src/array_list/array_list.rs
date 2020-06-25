@@ -33,7 +33,7 @@ impl ListMethods for ArrayList {
 
     fn list_insert(&mut self, pos: usize, value: Self::ELEMENT) {
         // 指定されたposの位置が存在していない場合
-        if pos < 0 || pos > self.length {
+        if pos > self.length {
             ()
         }
         // すでにelmentsが最大長になっている場合、新しくヒープ上に配列を作って内容をコピーする
@@ -59,8 +59,14 @@ impl ListMethods for ArrayList {
         self.length = self.length + 1;
     }
 
-    fn list_delete(&self, pos: usize) {
-        ()
+    fn list_delete(&mut self, pos: usize) {
+        if pos > self.length {
+            return ();
+        }
+        for i in pos..self.length {
+            self.elements[i] = self.elements[i + 1];
+        }
+        self.length -= 1;
     }
 
     fn list_first(&self) -> usize {

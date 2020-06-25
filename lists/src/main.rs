@@ -8,12 +8,17 @@ fn main() {
 
     // list1.list_insert(1, 6);
     // list1.list_insert(2, 7);
-    for i in 0..19 {
-        list1.list_insert(3, i as i64);
+    for i in 0..6 {
+        list1.list_insert(i, i as i64);
     }
+    list1.list_print();
 
-    list1.list_insert(4, 5);
-    list1.list_insert(1, 33);
+    // list1.list_insert(4, 5);
+    // list1.list_insert(1, 33);
+    println!("second!");
+
+    list1.list_delete(7);
+    list1.list_delete(3);
 
     list1.list_print();
 
