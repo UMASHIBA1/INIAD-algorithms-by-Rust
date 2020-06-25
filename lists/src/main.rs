@@ -21,6 +21,9 @@ fn main() {
     list1.list_print();
 
     println!("listfirst: {}", list1.list_first());
+    println!("listprevious: {}", list1.list_previous(1));
+    println!("listnext: {}", list1.list_next(2));
+    println!("listlast: {}", list1.list_last());
 
     let index0_result = list1.list_retrieve(0);
     match index0_result {

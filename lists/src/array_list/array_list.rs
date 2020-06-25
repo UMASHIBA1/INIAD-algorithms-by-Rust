@@ -84,11 +84,17 @@ impl ListMethods for ArrayList {
     }
 
     fn list_next(&self, pos: Self::POSITION) -> Self::POSITION {
-        1 as Self::POSITION
+        if pos >= self.length {
+            return 0;
+        }
+        pos + 1
     }
 
     fn list_previous(&self, pos: Self::POSITION) -> Self::POSITION {
-        1 as Self::POSITION
+        if pos <= 0 {
+            return 0;
+        }
+        pos - 1
     }
 
     fn list_retrieve(&self, pos: Self::POSITION) -> Result<Self::ELEMENT, &str> {
@@ -102,7 +108,7 @@ impl ListMethods for ArrayList {
     }
 
     fn list_get(&self, pos: Self::POSITION) -> Self::POSITION {
-        1 as Self::POSITION
+        pos
     }
 
 }
