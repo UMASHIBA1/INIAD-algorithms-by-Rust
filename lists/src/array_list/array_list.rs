@@ -2,6 +2,9 @@ use crate::methods::methods::ListMethods;
 
 const INITIAL_SIZE: usize = 10;
 
+
+// insert: O(n)
+// delete: O(n)
 pub struct ArrayList {
     elements: Vec<i64>,
     length: usize,
@@ -10,6 +13,7 @@ pub struct ArrayList {
 
 impl ListMethods for ArrayList {
     type ELEMENT = i64;
+    type POSITION = usize;
 
     fn new() -> Self {
         let mut new_list = ArrayList {
@@ -31,7 +35,7 @@ impl ListMethods for ArrayList {
         }
     }
 
-    fn list_insert(&mut self, pos: usize, value: Self::ELEMENT) {
+    fn list_insert(&mut self, pos: Self::POSITION, value: Self::ELEMENT) {
         // 指定されたposの位置が存在していない場合
         if pos > self.length {
             ()
@@ -59,33 +63,35 @@ impl ListMethods for ArrayList {
         self.length = self.length + 1;
     }
 
-    fn list_delete(&mut self, pos: usize) {
+    fn list_delete(&mut self, pos: Self::POSITION) {
         if pos > self.length {
             return ();
         }
+        // 指定されたposより後ろの要素を前にずらす
         for i in pos..self.length {
             self.elements[i] = self.elements[i + 1];
         }
+        // 長さ-1
         self.length -= 1;
     }
 
-    fn list_first(&self) -> usize {
-        1 as usize
+    fn list_first(&self) -> Self::POSITION {
+        0
     }
 
-    fn list_last(&self) -> usize {
-        1 as usize
+    fn list_last(&self) -> Self::POSITION {
+        self.length - 1
     }
 
-    fn list_next(&self, pos: usize) -> usize {
-        1 as usize
+    fn list_next(&self, pos: Self::POSITION) -> Self::POSITION {
+        1 as Self::POSITION
     }
 
-    fn list_previous(&self, pos: usize) -> usize {
-        1 as usize
+    fn list_previous(&self, pos: Self::POSITION) -> Self::POSITION {
+        1 as Self::POSITION
     }
 
-    fn list_get(&self, pos: usize) -> Result<Self::ELEMENT, &str> {
+    fn list_retrieve(&self, pos: Self::POSITION) -> Result<Self::ELEMENT, &str> {
         if self.length == 0 {
             return Err("list does not exist any element");
         }
@@ -95,7 +101,8 @@ impl ListMethods for ArrayList {
         Ok(self.elements[pos])
     }
 
-    fn list_index(&self, pos: &Self::ELEMENT) -> usize {
-        1 as usize
+    fn list_get(&self, pos: Self::POSITION) -> Self::POSITION {
+        1 as Self::POSITION
     }
+
 }

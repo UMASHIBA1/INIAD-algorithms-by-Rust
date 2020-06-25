@@ -11,18 +11,18 @@ fn main() {
     for i in 0..6 {
         list1.list_insert(i, i as i64);
     }
-    list1.list_print();
 
     // list1.list_insert(4, 5);
     // list1.list_insert(1, 33);
-    println!("second!");
 
     list1.list_delete(7);
     list1.list_delete(3);
 
     list1.list_print();
 
-    let index0_result = list1.list_get(0);
+    println!("listfirst: {}", list1.list_first());
+
+    let index0_result = list1.list_retrieve(0);
     match index0_result {
         Ok(n) => println!("index 0 is {}", n),
         Err(err) => println!("{}", err),
